@@ -1,0 +1,21 @@
+
+<div mat-dialog-content>
+  <p>Neue Kompetenz erstellen</p>
+  
+   <p>skill</p>
+   <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="data.skill">
+</mat-form-field>
+    <p>level</p>
+    <mat-form-field appearance="fill">
+        <input matInput [(ngModel)]="data.level">
+    </mat-form-field>
+    <p>desc</p>
+    <mat-form-field appearance="fill">
+        <input matInput [(ngModel)]="data.description">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]=data cdkFocusInitial>Ok</button>
+</div>

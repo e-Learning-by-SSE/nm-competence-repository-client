@@ -1,0 +1,38 @@
+
+
+<div class="wrapper-main">
+  <form class="wrapper-form">
+    <div class="form-input-wrapper">
+      <label for="email">Enter e-mail</label>
+      <input
+        name="email"
+        type="email"
+        id="email"
+        class="form-control form-field"
+      
+      />
+    </div>
+
+    <div class="form-input-wrapper">
+      <label for="password">Enter password</label>
+      <input
+        name="password"
+        type="password"
+        id="password"
+        class="form-control form-field"
+  
+      />
+    </div>
+
+    <button
+
+      type="button"
+      title="Sign in"
+      class="btn-signin"
+      (click)="signinBtnClicked()"
+    >Login</button>
+
+ 
+  </form>
+</div>
+{{mylogin.access_token}}

@@ -1,0 +1,7 @@
+{
+    "/*": {
+        "target": "https://staging.sse.uni-hildesheim.de:9010",
+        "secure": true,
+        "logLevel": "debug"
+    }
+}

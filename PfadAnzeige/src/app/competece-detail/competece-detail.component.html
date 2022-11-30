@@ -1,0 +1,9 @@
+<p>competece-detail works!</p>
+<div *ngIf="competence">
+    <h2>{{competence.id | uppercase}} Details</h2>
+    <div>id: {{competence.id}}</div>
+    <div>
+      <label for="competence-name">Competence name: </label>
+      <input id="competence-name" [(ngModel)]="competence.id" placeholder="name">
+    </div>
+  </div>

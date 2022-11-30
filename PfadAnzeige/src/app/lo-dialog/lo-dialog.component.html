@@ -1,0 +1,142 @@
+<div mat-dialog-content>
+    <p>Neues LO erstellen</p>
+
+    <p>LO Name</p>
+    <mat-form-field appearance="fill">
+        <input matInput [(ngModel)]="data.name">
+    </mat-form-field>
+    <p>reqComp</p>
+
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="competencies">
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row">
+
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="selectHandler(row)"
+                    [checked]="selectionReqComp.isSelected(row)">
+                </mat-checkbox>
+
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let comp">{{comp.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+            <mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let comp">{{comp.level}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="skill">
+            <mat-header-cell *matHeaderCellDef>skill</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let comp">{{comp.skill}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+
+
+
+    <p>reqÜberComp</p>
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="ueber_competencies">
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="selectHandlerReqUeber(row)"
+                [checked]="selectionReqUeber.isSelected(row)">
+            </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let comp">{{comp.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let comp">{{comp.name}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="desc">
+            <mat-header-cell *matHeaderCellDef>desc</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let comp">{{comp.desc}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsUeber"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumnsUeber"></mat-row>
+
+    </mat-table>
+    <p>offerdComp</p>
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="competencies">
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="selectHandlerOfferedComp(row)"
+                [checked]="selectionOfferedComp.isSelected(row)">
+            </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let comp">{{comp.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+            <mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let comp">{{comp.level}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="skill">
+            <mat-header-cell *matHeaderCellDef>skill</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let comp">{{comp.skill}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+    <p>offerdÜberComp</p>
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="ueber_competencies">
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="selectHandlerOfferedUeberComp(row)"
+                [checked]="selectionOfferedUeberComp.isSelected(row)">
+            </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let comp">{{comp.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>name</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let comp">{{comp.name}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="desc">
+            <mat-header-cell *matHeaderCellDef>desc</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let comp">{{comp.description}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsUeber"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumnsUeber"></mat-row>
+
+    </mat-table>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Exit</button>
+    <button mat-button [mat-dialog-close]=data cdkFocusInitial>Create</button>
+</div>
