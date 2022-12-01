@@ -14,7 +14,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh 'npm install --force'
             }
         }
         
@@ -24,7 +24,6 @@ pipeline {
             }
         }
 
-        /*
         stage('Docker') {
             steps {
                 sh 'mv docker/Dockerfile Dockerfile'
@@ -39,7 +38,6 @@ pipeline {
                 }
             }
         }
-        */
 
         /*
         stage('Deploy') {

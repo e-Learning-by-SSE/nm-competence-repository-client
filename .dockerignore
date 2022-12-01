@@ -1,8 +1,4 @@
-PfadAnzeige/.angular/cache/
-node_modules/
-/.angular/cache 
-# compiled output
-/dist
+# Generated output
 /node_modules
 
 # Logs
