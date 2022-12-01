@@ -1,11 +1,15 @@
 <button  (click)="openDialog()"  mat-button>Add competence</button>
 <button  (click)="openDialogUeber()"  mat-button>Add uebercompetence</button>
+<br>
+Kompetenzen   
 <li *ngFor="let competence of competencies">
-    <a routerLink="/comp/{{competence.id}}">
+  
+  <a routerLink="/comp/{{competence.id}}">
         <span class="badge">{{competence.id}}</span> {{competence.skill}}
       </a>
   </li>
   <br>
+  Überkompetenzen
   <li  *ngFor="let ueber_competence of ueber_competencies">
     <a routerLink="/comp/{{ueber_competence.id}}">
         <span class="badge">{{ueber_competence.id}}</span> {{ueber_competence.name}}

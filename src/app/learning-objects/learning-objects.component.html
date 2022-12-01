@@ -1,6 +1,7 @@
 <button (click)="openDialog()" mat-button>Add LO</button>
 <button (click)="openDialogGroup()" mat-button>Add LO Group</button>
-
+<br>
+Learning Object
 <li *ngFor="let lo of los">
   <a routerLink="/comp/{{lo.id}}">
     <span class="badge">{{lo.id}}</span> {{lo.name}}
@@ -8,7 +9,7 @@
 </li>
 <br>
 
-
+Learning Object Group
 <li *ngFor="let lo of losGroups">
   <a routerLink="/comp/{{lo.id}}">
     <span class="badge">{{lo.id}}</span> {{lo.name}}
