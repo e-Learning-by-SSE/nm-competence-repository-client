@@ -6,6 +6,7 @@ import { CompetenciesComponent } from './competencies/competencies.component';
 import { LearningObjectDetailComponent } from './learning-object-detail/learning-object-detail.component';
 import { LearningObjectsComponent } from './learning-objects/learning-objects.component';
 import { LoginComponent } from './login/login.component';
+import { RepoComponent } from './repo/repo.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }, 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'comp/:id', component: CompeteceDetailComponent },
   { path: 'graph', component: ChartComponent },
   { path: 'los', component: LearningObjectsComponent },
+  { path: 'repo', component: RepoComponent },
   { path: 'los/:id', component: LearningObjectDetailComponent },
   
 ];

@@ -30,7 +30,9 @@ import {  MatTableModule}   from "@angular/material/table";
 import {MatCheckboxModule} from  "@angular/material/checkbox";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import{MatMenuModule} from '@angular/material/menu'
-import{MatButtonModule} from '@angular/material/button'
+import{MatButtonModule} from '@angular/material/button';
+import { RepoComponent } from './repo/repo.component';
+import { GraphCandLOComponent } from './graph-cand-lo/graph-cand-lo.component'
 const configurationFactory = () => {
   const configParams: ConfigurationParameters = {
     basePath: 'https://staging.sse.uni-hildesheim.de:9010',
@@ -54,7 +56,9 @@ const configurationFactory = () => {
     CompDialogComponent,
     UebercompDialogComponent,
     LoDialogComponent,
-    LoGroupDialogComponent
+    LoGroupDialogComponent,
+    RepoComponent,
+    GraphCandLOComponent
   ],
   imports: [
     BrowserModule,
