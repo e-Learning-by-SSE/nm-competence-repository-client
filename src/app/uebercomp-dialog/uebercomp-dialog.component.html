@@ -10,7 +10,73 @@
     <mat-form-field appearance="fill">
         <input matInput [(ngModel)]="data.description">
     </mat-form-field>
+
+    <p>nested Comp</p>
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="competencies">
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="selectHandlerComp(row)"
+                [checked]="selectionComp.isSelected(row)">
+            </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let comp">{{comp.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+            <mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let comp">{{comp.level}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="skill">
+            <mat-header-cell *matHeaderCellDef>skill</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let comp">{{comp.skill}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+    <p>nested ÜberComp</p>
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="ueber_competencies">
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="selectHandlerUeberComp(row)"
+                [checked]="selectionUeberComp.isSelected(row)">
+            </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let comp">{{comp.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>name</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let comp">{{comp.name}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="desc">
+            <mat-header-cell *matHeaderCellDef>desc</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let comp">{{comp.description}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsUeber"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumnsUeber"></mat-row>
+
+    </mat-table>
+
 </div>
+
+
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
     <button mat-button [mat-dialog-close]=data cdkFocusInitial>Ok</button>
