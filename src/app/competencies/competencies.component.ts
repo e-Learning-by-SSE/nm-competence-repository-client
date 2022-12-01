@@ -67,8 +67,8 @@ export class CompetenciesComponent implements OnInit {
       dto.skill=result.skill;
       this.compService.repositoryMgmtControllerAddCompetence(dto,'1').subscribe({
         next: (v) => {
-          console.log(v)
-
+          console.log(v);
+          this.getCompetencies();
   
         },
         error: (e) => console.error(e),
@@ -103,7 +103,7 @@ export class CompetenciesComponent implements OnInit {
       this.compService.repositoryMgmtControllerAddUeberCompetence(dto,'1').subscribe({
         next: (v) => {
           console.log(v)
-
+          this.getCompetencies();
   
         },
         error: (e) => console.error(e),

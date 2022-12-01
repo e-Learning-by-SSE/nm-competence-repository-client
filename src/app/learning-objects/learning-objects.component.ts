@@ -70,8 +70,8 @@ export class LearningObjectsComponent  implements OnInit {
 
       this.loService.loRepositoryControllerCreateLearningObject   (dto,'1').subscribe({
         next: (v) => {
-          console.log(v)
-
+          console.log(v);
+          this.getLOs();
   
         },
         error: (e) => console.error(e),
