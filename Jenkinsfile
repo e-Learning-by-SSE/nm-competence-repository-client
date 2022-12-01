@@ -24,7 +24,6 @@ pipeline {
             }
         }
 
-        /*
         stage('Docker') {
             steps {
                 sh 'mv docker/Dockerfile Dockerfile'
@@ -39,7 +38,6 @@ pipeline {
                 }
             }
         }
-        */
 
         /*
         stage('Deploy') {
