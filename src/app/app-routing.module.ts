@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChartComponent } from './chart/chart.component';
 import { CompeteceDetailComponent } from './competece-detail/competece-detail.component';
 import { CompetenciesComponent } from './competencies/competencies.component';
+import { GraphCandLOComponent } from './graph-cand-lo/graph-cand-lo.component';
 import { LearningObjectDetailComponent } from './learning-object-detail/learning-object-detail.component';
 import { LearningObjectsComponent } from './learning-objects/learning-objects.component';
 import { LoginComponent } from './login/login.component';
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'los', component: LearningObjectsComponent },
   { path: 'repo', component: RepoComponent },
   { path: 'los/:id', component: LearningObjectDetailComponent },
-  
+  {path: 'graphLOC', component:GraphCandLOComponent}
 ];
 
 @NgModule({

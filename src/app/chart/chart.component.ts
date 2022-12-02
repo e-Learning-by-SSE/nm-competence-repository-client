@@ -11,9 +11,9 @@ import { Subject } from 'rxjs';
 })
 export class ChartComponent implements OnInit {
   competencies: CompetenceDto[] = [];
-  selectedComp?: CompetenceDto;
+  
   ueber_competencies: ResolvedUeberCompetenceDto[] = [];
-  selected_ueber_Comp?: ResolvedUeberCompetenceDto;
+ 
   nodes: Node[] = [];
   edges: Edge[] = [];
   clusters: { id: string; label: string; childNodeIds: string[]; }[] = [];

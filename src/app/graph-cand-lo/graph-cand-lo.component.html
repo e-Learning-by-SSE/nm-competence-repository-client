@@ -1,1 +1,20 @@
-<p>graph-cand-lo works!</p>
+
+<ngx-graph
+class="chart-container"
+[view]="[1400, 1800]"
+layout="colaForceDirected"
+[showMiniMap]="true"
+[update$]="update$"
+[nodes]="nodes"
+[links]="edges"
+>
+<ng-template #nodeTemplate let-node>
+  <svg:g class="node">
+    <svg:rect [attr.width]="node.dimension.width" [attr.height]="node.dimension.height" [attr.fill]="node.data.color" />
+    <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">{{node.data.name}}</svg:text>
+  </svg:g>
+</ng-template>
+
+
+</ngx-graph>
+
