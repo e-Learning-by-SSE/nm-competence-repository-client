@@ -27,8 +27,9 @@ export class GraphCandLOComponent implements OnInit {
   ngOnInit(): void {
     this.compService.configuration.accessToken = this.authService.configuration.accessToken
     this.loService.configuration.accessToken = this.authService.configuration.accessToken
-    this.getLOs();
+
     this.getCompetencies();
+    this.getLOs();
   }
 
 
@@ -42,39 +43,43 @@ export class GraphCandLOComponent implements OnInit {
           element => {
             this.nodes.push(
               {
-                id: element.id,
+                id: element.id + 'LO',
                 label: 'C',
                 data: { name: element.name }
               }
             )
-     /*       element.offeredCompetencies.forEach(
+            element.offeredCompetencies.forEach(
               offerdComp => this.edges.push({
+                id: 'ID',
                 source: offerdComp,
-                target: element.id,
-                id:'ID'
+                target: element.id + 'LO',
+
               })
             )
             element.offeredUeberCompetencies.forEach(
               offerdUeberComp => this.edges.push({
-                source: offerdUeberComp+'ueber',
-                target: element.id,
-                id:'ID'
+                id: 'ID',
+                source: offerdUeberComp + 'ueber',
+                target: element.id + 'LO',
+                
               })
             )
-            element.requiredCompetencies.forEach(
+           element.requiredCompetencies.forEach(
               reqComp => this.edges.push({
-                source: element.id,
+                id: 'ID',
+                source: element.id + 'LO',
                 target: reqComp,
-                id:'ID'
+                
               })
             )
             element.requiredUeberCompetencies.forEach(
               reqUeberComp => this.edges.push({
-                source: reqUeberComp+'ueber',
-                target: element.id,
-                id:'ID'
+                id: 'ID',
+                source: reqUeberComp + 'ueber',
+                target: element.id+'LO',
+                
               })
-            )*/
+            )
           }
         )
 
@@ -89,7 +94,8 @@ export class GraphCandLOComponent implements OnInit {
             )
           }
         )
-
+        console.log(this.nodes)
+        console.log(this.edges)
         this.update$.next(true);
       },
       error: (e) => console.error(e),
@@ -134,8 +140,8 @@ export class GraphCandLOComponent implements OnInit {
         });
 
         this.update$.next(true);
-        console.log(this.nodes)
-        console.log(this.edges)
+        //       console.log(this.nodes)
+        //      console.log(this.edges)
       },
       error: (e) => console.error(e),
       complete: () => console.info('complete')
