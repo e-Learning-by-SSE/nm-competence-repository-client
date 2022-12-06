@@ -33,7 +33,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import{MatMenuModule} from '@angular/material/menu'
 import{MatButtonModule} from '@angular/material/button';
 import { RepoComponent } from './repo/repo.component';
-import { GraphCandLOComponent } from './graph-cand-lo/graph-cand-lo.component'
+import { GraphCandLOComponent } from './graph-cand-lo/graph-cand-lo.component';
+import { ReooDialogComponent } from './reoo-dialog/reoo-dialog.component'
 const configurationFactory = () => {
   const configParams: ConfigurationParameters = {
     basePath: 'https://staging.sse.uni-hildesheim.de:9010',
@@ -45,7 +46,7 @@ const configurationFactory = () => {
 
 const configurationFactory2 = () => {
   const configParams: Param2 = {
-    basePath: 'http://localhost:5000',
+    basePath: 'https://staging.sse.uni-hildesheim.de:9012',
 
   };
   return new Config2(configParams);
@@ -67,7 +68,8 @@ const configurationFactory2 = () => {
     LoDialogComponent,
     LoGroupDialogComponent,
     RepoComponent,
-    GraphCandLOComponent
+    GraphCandLOComponent,
+    ReooDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,16 @@
+
+<div mat-dialog-content>
+    <p>Neues Reop erstellen</p>
+    
+     <p>name</p>
+     <mat-form-field appearance="fill">
+      <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+      
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]=data cdkFocusInitial>Ok</button>
+  </div>
+
+ 

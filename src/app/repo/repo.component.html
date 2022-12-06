@@ -1,1 +1,11 @@
-<p>repo works!</p>
+<button (click)="openDialog()" mat-button>Add Repo</button>
+
+<br>
+Repos
+<li *ngFor="let rep of repos">
+  <a routerLink="/comp/{{rep.id}}">
+    <span class="badge">{{rep.id}}</span> {{rep.name}}
+  </a>
+</li>
+<br>
+
