@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompetenceDto, ResolvedUeberCompetenceDto, CompetenceCreationDto, UeberCompetenceCreationDto } from 'competence_repository_api_typescript-angular';
 import { COMP } from '../mock-comp';
 import { CompetenciesService, AuthenticationService } from 'competence_repository_api_typescript-angular';
+import {  PAthFinderService} from 'competence_ai_api_typescript-angular'
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CompDialogComponent } from '../comp-dialog/comp-dialog.component';
@@ -18,13 +19,26 @@ export class CompetenciesComponent implements OnInit {
   ueber_competencies: ResolvedUeberCompetenceDto[] = [];
   selected_ueber_Comp?: ResolvedUeberCompetenceDto;
 
-  constructor(private router: Router, private compService: CompetenciesService, private authService: AuthenticationService, private dialog: MatDialog) { }
+  constructor(private router: Router, private compService: CompetenciesService, private authService: AuthenticationService, private dialog: MatDialog, private pathService: PAthFinderService) { }
 
   ngOnInit(): void {
     this.compService.configuration.accessToken = this.authService.configuration.accessToken
     this.getCompetencies();
-
+    this.sayHalloPathFinder();
   }
+
+sayHalloPathFinder():void{
+console.log('Path');
+this.pathService.getHello().subscribe({
+  next: (v) => {
+    console.log('Pathfinder says : ')
+    console.log(v)
+    
+  },
+  error: (e) => console.error(e),
+  complete: () => console.info('complete')
+})
+}
 
   getCompetencies(): void {
     this.compService.repositoryMgmtControllerLoadResolvedRepository('1').subscribe({

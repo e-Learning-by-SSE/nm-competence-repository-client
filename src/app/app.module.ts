@@ -8,6 +8,7 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { ApiModule, Configuration, ConfigurationParameters } from 'competence_repository_api_typescript-angular'
+import { ApiModule as ApiModuleAI, Configuration as Config2, ConfigurationParameters as Param2 }  from 'competence_ai_api_typescript-angular'
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ChartComponent } from './chart/chart.component';
@@ -40,6 +41,14 @@ const configurationFactory = () => {
 
   };
   return new Configuration(configParams);
+};
+
+const configurationFactory2 = () => {
+  const configParams: Param2 = {
+    basePath: 'http://localhost:5000',
+
+  };
+  return new Config2(configParams);
 };
 
 @NgModule({
@@ -79,6 +88,7 @@ const configurationFactory = () => {
     MatProgressSpinnerModule,
     MatMenuModule,MatButtonModule,
     ApiModule.forRoot(configurationFactory),
+    ApiModuleAI.forRoot(configurationFactory2)
   ],
   providers: [],
   bootstrap: [AppComponent], 
