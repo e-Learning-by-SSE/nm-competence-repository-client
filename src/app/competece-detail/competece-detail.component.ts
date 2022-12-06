@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CompetenceDto } from 'competence_repository_api_typescript-angular';
+
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { CompetenciesService, CompetenceDto } from 'competence_repository_api_typescript-angular';
 
-import { CompetenciesService } from 'competence_repository_api_typescript-angular';
+
 @Component({
   selector: 'app-competece-detail',
   templateUrl: './competece-detail.component.html',
@@ -20,9 +21,10 @@ export class CompeteceDetailComponent implements OnInit {
 }
 
 getHero(): void {
-  const id = Number(this.route.snapshot.paramMap.get('id'));
- //this.compService (id)
-   // .subscribe(hero => this.hero = hero);
+  let id = '';
+  id = String(this.route.snapshot.paramMap.get('id'));
+ this.compService.repositoryMgmtControllerGetCompetence(id)
+   .subscribe(comp => this.competence = comp);
 }
   @Input() competence?: CompetenceDto;
 }

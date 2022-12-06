@@ -241,6 +241,88 @@ export class CompetenciesService {
 
     /**
      * 
+     * Returns the specified Competence.
+     * @param competenceId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public repositoryMgmtControllerGetCompetence(competenceId: string, observe?: 'body', reportProgress?: boolean): Observable<CompetenceDto>;
+    public repositoryMgmtControllerGetCompetence(competenceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CompetenceDto>>;
+    public repositoryMgmtControllerGetCompetence(competenceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CompetenceDto>>;
+    public repositoryMgmtControllerGetCompetence(competenceId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (competenceId === null || competenceId === undefined) {
+            throw new Error('Required parameter competenceId was null or undefined when calling repositoryMgmtControllerGetCompetence.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<CompetenceDto>('get',`${this.basePath}/repositories/competencies/${encodeURIComponent(String(competenceId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Returns the specified Uber-Competence.
+     * @param uebercompetenceId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public repositoryMgmtControllerGetUberCompetence(uebercompetenceId: string, observe?: 'body', reportProgress?: boolean): Observable<UnResolvedUeberCompetenceDto>;
+    public repositoryMgmtControllerGetUberCompetence(uebercompetenceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UnResolvedUeberCompetenceDto>>;
+    public repositoryMgmtControllerGetUberCompetence(uebercompetenceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UnResolvedUeberCompetenceDto>>;
+    public repositoryMgmtControllerGetUberCompetence(uebercompetenceId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (uebercompetenceId === null || uebercompetenceId === undefined) {
+            throw new Error('Required parameter uebercompetenceId was null or undefined when calling repositoryMgmtControllerGetUberCompetence.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<UnResolvedUeberCompetenceDto>('get',`${this.basePath}/repositories/uber_competencies/${encodeURIComponent(String(uebercompetenceId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
      * Lists all repositories of the specified user, without showing its content.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

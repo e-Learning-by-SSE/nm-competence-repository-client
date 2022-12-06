@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { LearningObjectDto, LearningObjectGroupDto, CompetenciesService, AuthenticationService, LearningObjectCreationDto, RepositoryDto, RepositoryCreationDto , } from 'competence_repository_api_typescript-angular';
-import { LoDialogComponent } from '../lo-dialog/lo-dialog.component';
-import { LoGroupDialogComponent } from '../lo-group-dialog/lo-group-dialog.component';
+import { CompetenciesService, AuthenticationService, RepositoryDto, RepositoryCreationDto , } from 'competence_repository_api_typescript-angular';
 import { ReooDialogComponent } from '../reoo-dialog/reoo-dialog.component';
 
 @Component({
@@ -13,8 +11,7 @@ import { ReooDialogComponent } from '../reoo-dialog/reoo-dialog.component';
 })
 export class RepoComponent implements OnInit {
   repos: RepositoryDto[] = [];
-  selectedLo?: LearningObjectDto;
-  losGroups : LearningObjectGroupDto [] = [];
+
 
   constructor(private router: Router, private compService: CompetenciesService, private authService: AuthenticationService, private dialog: MatDialog) { }
 

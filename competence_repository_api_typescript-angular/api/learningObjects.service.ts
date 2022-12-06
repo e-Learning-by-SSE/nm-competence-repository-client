@@ -300,6 +300,47 @@ export class LearningObjectsService {
     /**
      * 
      * 
+     * @param groupId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public loRepositoryControllerGetLoGroup(groupId: string, observe?: 'body', reportProgress?: boolean): Observable<LearningObjectGroupDto>;
+    public loRepositoryControllerGetLoGroup(groupId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<LearningObjectGroupDto>>;
+    public loRepositoryControllerGetLoGroup(groupId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<LearningObjectGroupDto>>;
+    public loRepositoryControllerGetLoGroup(groupId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (groupId === null || groupId === undefined) {
+            throw new Error('Required parameter groupId was null or undefined when calling loRepositoryControllerGetLoGroup.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<LearningObjectGroupDto>('get',`${this.basePath}/lo_repository/learning_object_groups/${encodeURIComponent(String(groupId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
