@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompetenceDto, ResolvedUeberCompetenceDto, CompetenceCreationDto, UeberCompetenceCreationDto } from 'competence_repository_api_typescript-angular';
+import { CompetenceDto, ResolvedUeberCompetenceDto, CompetenceCreationDto, UeberCompetenceCreationDto, RepositoryDto } from 'competence_repository_api_typescript-angular';
 import { COMP } from '../mock-comp';
 import { CompetenciesService, AuthenticationService } from 'competence_repository_api_typescript-angular';
 import {  PAthFinderService} from 'competence_ai_api_typescript-angular'
@@ -14,19 +14,40 @@ import { UebercompDialogComponent } from '../uebercomp-dialog/uebercomp-dialog.c
   styleUrls: ['./competencies.component.scss']
 })
 export class CompetenciesComponent implements OnInit {
+
   competencies: CompetenceDto[] = [];
+  repos: RepositoryDto[] = [];
   selectedComp?: CompetenceDto;
   ueber_competencies: ResolvedUeberCompetenceDto[] = [];
   selected_ueber_Comp?: ResolvedUeberCompetenceDto;
-
+  selected: RepositoryDto = {
+    userId: '',
+    id: '',
+    name: ''
+  };
   constructor(private router: Router, private compService: CompetenciesService, private authService: AuthenticationService, private dialog: MatDialog, private pathService: PAthFinderService) { }
 
   ngOnInit(): void {
     this.compService.configuration.accessToken = this.authService.configuration.accessToken
-    this.getCompetencies();
-    this.sayHalloPathFinder();
+    
+    //this.sayHalloPathFinder();
+    this.getRepos()
   }
 
+  getRepos(): void {
+    this.compService.repositoryMgmtControllerListRepositories() .subscribe({
+      next: (v) => {
+        console.log(v)
+        this.repos = v.repositories
+        
+       
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    })
+
+  }
+ 
 sayHalloPathFinder():void{
 console.log('Path');
 this.pathService.getHello().subscribe({
@@ -41,7 +62,7 @@ this.pathService.getHello().subscribe({
 }
 
   getCompetencies(): void {
-    this.compService.repositoryMgmtControllerLoadResolvedRepository('1').subscribe({
+    this.compService.repositoryMgmtControllerLoadResolvedRepository(this.selected.id).subscribe({
       next: (v) => {
         console.log(v)
         this.competencies = v.competencies
@@ -54,6 +75,10 @@ this.pathService.getHello().subscribe({
 
   }
 
+  repoChange() {
+    this.getCompetencies();
+    
+    }
 
   openDialog(): void {
     //let dialogRef1 = this.dialog.open(CompDialogComponent);
@@ -79,7 +104,7 @@ this.pathService.getHello().subscribe({
       dto.description = result.description;
       dto.level= Number(result.level);
       dto.skill=result.skill;
-      this.compService.repositoryMgmtControllerAddCompetence(dto,'1').subscribe({
+      this.compService.repositoryMgmtControllerAddCompetence(dto,this.selected.id).subscribe({
         next: (v) => {
           console.log(v);
           this.getCompetencies();
@@ -114,7 +139,7 @@ this.pathService.getHello().subscribe({
       console.log(result)
       dto.description = result.description;
      dto.name = result.name
-      this.compService.repositoryMgmtControllerAddUeberCompetence(dto,'1').subscribe({
+      this.compService.repositoryMgmtControllerAddUeberCompetence(dto,this.selected.id).subscribe({
         next: (v) => {
           console.log(v)
           this.getCompetencies();

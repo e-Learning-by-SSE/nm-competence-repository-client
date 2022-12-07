@@ -28,6 +28,7 @@ import {  MatProgressSpinnerModule}   from "@angular/material/progress-spinner";
 import {  MatSortModule}   from "@angular/material/sort";
 import {  MatPaginatorModule}   from "@angular/material/paginator";
 import {  MatTableModule}   from "@angular/material/table";
+import {  MatSelectModule}   from "@angular/material/select";
 import {MatCheckboxModule} from  "@angular/material/checkbox";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import{MatMenuModule} from '@angular/material/menu'
@@ -85,7 +86,7 @@ const configurationFactory2 = () => {
     BrowserAnimationsModule,
     HttpClientModule,
     NgxGraphModule,HttpClientModule,
-    MatInputModule,
+    MatInputModule,MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
