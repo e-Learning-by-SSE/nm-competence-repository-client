@@ -37,7 +37,8 @@ import { RepoComponent } from './repo/repo.component';
 import { GraphCandLOComponent } from './graph-cand-lo/graph-cand-lo.component';
 import { ReooDialogComponent } from './reoo-dialog/reoo-dialog.component';
 import { UeberCompDetailComponent } from './ueber-comp-detail/ueber-comp-detail.component';
-import { RepoDetailComponent } from './repo-detail/repo-detail.component'
+import { RepoDetailComponent } from './repo-detail/repo-detail.component';
+import { PathViewerComponent } from './path-viewer/path-viewer.component'
 const configurationFactory = () => {
   const configParams: ConfigurationParameters = {
     basePath: 'https://staging.sse.uni-hildesheim.de:9010',
@@ -74,7 +75,8 @@ const configurationFactory2 = () => {
     GraphCandLOComponent,
     ReooDialogComponent,
     UeberCompDetailComponent,
-    RepoDetailComponent
+    RepoDetailComponent,
+    PathViewerComponent
   ],
   imports: [
     BrowserModule,

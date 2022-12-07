@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthenticationService, LearningObjectCreationDto, LearningObjectDto, LearningObjectGroupDto, LearningObjectsService } from 'competence_repository_api_typescript-angular';
+import { AuthenticationService, CompetenciesService, LearningObjectCreationDto, LearningObjectDto, LearningObjectGroupDto, LearningObjectsService, RepositoryDto } from 'competence_repository_api_typescript-angular';
 import { CompDialogComponent } from '../comp-dialog/comp-dialog.component';
 import { LoDialogComponent } from '../lo-dialog/lo-dialog.component';
 import { LoGroupDialogComponent } from '../lo-group-dialog/lo-group-dialog.component';
@@ -11,26 +11,46 @@ import { LoGroupDialogComponent } from '../lo-group-dialog/lo-group-dialog.compo
   templateUrl: './learning-objects.component.html',
   styleUrls: ['./learning-objects.component.scss']
 })
-export class LearningObjectsComponent  implements OnInit {
+export class LearningObjectsComponent implements OnInit {
   los: LearningObjectDto[] = [];
+  repos: RepositoryDto[] = [];
   selectedLo?: LearningObjectDto;
-  losGroups : LearningObjectGroupDto [] = [];
-
-  constructor(private router: Router, private loService: LearningObjectsService, private authService: AuthenticationService, private dialog: MatDialog) { }
+  losGroups: LearningObjectGroupDto[] = [];
+  selected: RepositoryDto = {
+    userId: '',
+    id: '',
+    name: ''
+  };
+  constructor(private router: Router, private loService: LearningObjectsService, private authService: AuthenticationService, private compService: CompetenciesService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loService.configuration.accessToken = this.authService.configuration.accessToken
-    this.getLOs();
+    this.getRepos();
+  }
+  getRepos(): void {
+    this.compService.repositoryMgmtControllerListRepositories().subscribe({
+      next: (v) => {
+        console.log(v)
+        this.repos = v.repositories
+
+
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    })
 
   }
-
+  repoChange() {
+    this.getLOs();
+    
+    }
   getLOs(): void {
-    this.loService.loRepositoryControllerLoadRepository ('1').subscribe({
+    this.loService.loRepositoryControllerLoadRepository(this.selected.id).subscribe({
       next: (v) => {
         console.log(v)
         this.los = v.learningObjects
         this.losGroups = v.learningObjectsGroups
-       
+
       },
       error: (e) => console.error(e),
       complete: () => console.info('complete')
@@ -41,7 +61,7 @@ export class LearningObjectsComponent  implements OnInit {
   openDialog(): void {
     //let dialogRef1 = this.dialog.open(CompDialogComponent);
     const dialogConfig = new MatDialogConfig();
-    let dto :  LearningObjectCreationDto = {
+    let dto: LearningObjectCreationDto = {
       name: '',
       requiredCompetencies: [],
       requiredUeberCompetencies: [],
@@ -52,10 +72,10 @@ export class LearningObjectsComponent  implements OnInit {
     dialogConfig.autoFocus = true;
 
 
-    dialogConfig.data= dto;
+    dialogConfig.data = dto;
 
 
-    const dialogRef = this.dialog.open(LoDialogComponent,dialogConfig);
+    const dialogRef = this.dialog.open(LoDialogComponent, dialogConfig);
 
 
 
@@ -63,28 +83,28 @@ export class LearningObjectsComponent  implements OnInit {
       console.log('The dialog was closed');
       console.log(result)
       dto.description = result.description;
-      dto.name  = result.name;
-      
+      dto.name = result.name;
+
       dto = result;
       console.log(dto);
 
-      this.loService.loRepositoryControllerCreateLearningObject   (dto,'1').subscribe({
+      this.loService.loRepositoryControllerCreateLearningObject(dto, this.selected.id).subscribe({
         next: (v) => {
           console.log(v);
           this.getLOs();
-  
+
         },
         error: (e) => console.error(e),
         complete: () => console.info('complete')
       })
-  ;
+        ;
     });
   }
 
   openDialogGroup(): void {
     //let dialogRef1 = this.dialog.open(CompDialogComponent);
     const dialogConfig = new MatDialogConfig();
-    let dto :  LearningObjectGroupDto = {
+    let dto: LearningObjectGroupDto = {
       name: '',
       id: '',
       repositoryId: '',
@@ -95,10 +115,10 @@ export class LearningObjectsComponent  implements OnInit {
     dialogConfig.autoFocus = true;
 
 
-    dialogConfig.data= dto;
+    dialogConfig.data = dto;
 
 
-    const dialogRef = this.dialog.open(LoGroupDialogComponent,dialogConfig);
+    const dialogRef = this.dialog.open(LoGroupDialogComponent, dialogConfig);
 
 
 
@@ -106,17 +126,17 @@ export class LearningObjectsComponent  implements OnInit {
       console.log('The dialog was closed');
       console.log(result)
       dto.description = result.description;
-      dto.name  = result.name;
-   /*   this.loService.loRepositoryControllerCreateLearningObject   (dto,'1').subscribe({
-        next: (v) => {
-          console.log(v)
-
-  
-        },
-        error: (e) => console.error(e),
-        complete: () => console.info('complete')
-      })
-  ;*/
+      dto.name = result.name;
+      /*   this.loService.loRepositoryControllerCreateLearningObject   (dto,'1').subscribe({
+           next: (v) => {
+             console.log(v)
+   
+     
+           },
+           error: (e) => console.error(e),
+           complete: () => console.info('complete')
+         })
+     ;*/
     });
   }
 

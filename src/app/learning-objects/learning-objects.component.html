@@ -1,3 +1,14 @@
+<mat-form-field appearance="fill">
+<mat-label>Select an option</mat-label>
+<mat-select [(value)]="selected" (selectionChange)="repoChange()">
+  <mat-option *ngFor="let rep of repos" [value]="rep">
+    {{rep.name}}
+</mat-option>
+</mat-select>
+</mat-form-field>
+
+<p>You selected: {{selected.name}}</p>
+
 <button (click)="openDialog()" mat-button>Add LO</button>
 <button (click)="openDialogGroup()" mat-button>Add LO Group</button>
 <br>
