@@ -1,1 +1,11 @@
 <p>lo-group-detail works!</p>
+<p>learning-object-detail works!</p>
+
+<div *ngIf="loGroup">
+    <h2> Details of : {{loGroup.id | uppercase}}</h2>
+    <div>id: {{loGroup.id}}</div>
+    <div>
+      <label for="competence-name">LO name: </label>
+      <input id="competence-name" [(ngModel)]="loGroup.name" placeholder="name">
+    </div>
+  </div>

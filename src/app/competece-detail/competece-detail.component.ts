@@ -13,9 +13,7 @@ import { CompetenciesService, CompetenceDto } from 'competence_repository_api_ty
 export class CompeteceDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private compService: CompetenciesService,
-    private location: Location
-  ) {}
+    private compService: CompetenciesService  ) {}
 
   ngOnInit(): void  { this.getHero();
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CompetenciesService, CompetenceDto } from 'competence_repository_api_typescript-angular';
-
+import { CompetenciesService, CompetenceDto, LearningObjectsService, LearningObjectDto } from 'competence_repository_api_typescript-angular';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-learning-object-detail',
   templateUrl: './learning-object-detail.component.html',
@@ -10,18 +10,16 @@ import { CompetenciesService, CompetenceDto } from 'competence_repository_api_ty
 export class LearningObjectDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private compService: CompetenciesService,
-    private location: Location
-  ) {}
+    private losService: LearningObjectsService  ) {}
 
-  ngOnInit(): void  { this.getHero();
+  ngOnInit(): void  { this.getLos();
 }
 
-getHero(): void {
+getLos(): void {
   let id = '';
   id = String(this.route.snapshot.paramMap.get('id'));
- this.compService.repositoryMgmtControllerGetCompetence(id)
-   .subscribe(comp => this.competence = comp);
+ this.losService.loRepositoryControllerLoadLearningObject(id)
+   .subscribe(comp => this.lo = comp);
 }
-  @Input() competence?: CompetenceDto;
+  @Input() lo?: LearningObjectDto;
 }

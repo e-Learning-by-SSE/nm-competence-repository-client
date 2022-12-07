@@ -1,1 +1,10 @@
 <p>learning-object-detail works!</p>
+
+<div *ngIf="lo">
+    <h2> Details of : {{lo.id | uppercase}}</h2>
+    <div>id: {{lo.id}}</div>
+    <div>
+      <label for="competence-name">LO name: </label>
+      <input id="competence-name" [(ngModel)]="lo.name" placeholder="name">
+    </div>
+  </div>

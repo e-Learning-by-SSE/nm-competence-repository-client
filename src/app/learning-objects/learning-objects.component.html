@@ -3,7 +3,7 @@
 <br>
 Learning Object
 <li *ngFor="let lo of los">
-  <a routerLink="/comp/{{lo.id}}">
+  <a routerLink="/los/{{lo.id}}">
     <span class="badge">{{lo.id}}</span> {{lo.name}}
   </a>
 </li>
@@ -11,7 +11,7 @@ Learning Object
 
 Learning Object Group
 <li *ngFor="let lo of losGroups">
-  <a routerLink="/comp/{{lo.id}}">
+  <a routerLink="/losGroup/{{lo.id}}">
     <span class="badge">{{lo.id}}</span> {{lo.name}}
   </a>
 </li>
