@@ -8,6 +8,7 @@ import { LearningObjectDetailComponent } from './learning-object-detail/learning
 import { LearningObjectsComponent } from './learning-objects/learning-objects.component';
 import { LoGroupDetailComponent } from './lo-group-detail/lo-group-detail.component';
 import { LoginComponent } from './login/login.component';
+import { RepoDetailComponent } from './repo-detail/repo-detail.component';
 import { RepoComponent } from './repo/repo.component';
 import { UeberCompDetailComponent } from './ueber-comp-detail/ueber-comp-detail.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'graph', component: ChartComponent },
   { path: 'los', component: LearningObjectsComponent },
   { path: 'repo', component: RepoComponent },
+  { path: 'repo/:id', component: RepoDetailComponent },
   { path: 'los/:id', component: LearningObjectDetailComponent },
   { path: 'losGroup/:id', component: LoGroupDetailComponent },
   {path: 'graphLOC', component:GraphCandLOComponent}

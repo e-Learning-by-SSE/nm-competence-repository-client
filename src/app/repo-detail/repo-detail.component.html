@@ -1,0 +1,10 @@
+<p>repo-detail works!</p>
+
+<div *ngIf="repo">
+    <h2> Details of : {{repo.id | uppercase}}</h2>
+    <div>id: {{repo.id}}</div>
+    <div>
+      <label for="competence-name">LO name: </label>
+      <input id="competence-name" [(ngModel)]="repo.name" placeholder="name">
+    </div>
+  </div>

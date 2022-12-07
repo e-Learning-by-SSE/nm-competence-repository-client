@@ -35,7 +35,8 @@ import{MatButtonModule} from '@angular/material/button';
 import { RepoComponent } from './repo/repo.component';
 import { GraphCandLOComponent } from './graph-cand-lo/graph-cand-lo.component';
 import { ReooDialogComponent } from './reoo-dialog/reoo-dialog.component';
-import { UeberCompDetailComponent } from './ueber-comp-detail/ueber-comp-detail.component'
+import { UeberCompDetailComponent } from './ueber-comp-detail/ueber-comp-detail.component';
+import { RepoDetailComponent } from './repo-detail/repo-detail.component'
 const configurationFactory = () => {
   const configParams: ConfigurationParameters = {
     basePath: 'https://staging.sse.uni-hildesheim.de:9010',
@@ -71,7 +72,8 @@ const configurationFactory2 = () => {
     RepoComponent,
     GraphCandLOComponent,
     ReooDialogComponent,
-    UeberCompDetailComponent
+    UeberCompDetailComponent,
+    RepoDetailComponent
   ],
   imports: [
     BrowserModule,
