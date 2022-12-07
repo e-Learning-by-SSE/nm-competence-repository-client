@@ -25,7 +25,7 @@ export class CompetenciesComponent implements OnInit {
     id: '',
     name: ''
   };
-  constructor(private router: Router, private compService: CompetenciesService, private authService: AuthenticationService, private dialog: MatDialog, private pathService: PAthFinderService) { }
+  constructor(private router: Router, private compService: CompetenciesService, private authService: AuthenticationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.compService.configuration.accessToken = this.authService.configuration.accessToken
@@ -48,18 +48,6 @@ export class CompetenciesComponent implements OnInit {
 
   }
  
-sayHalloPathFinder():void{
-console.log('Path');
-this.pathService.getHello().subscribe({
-  next: (v) => {
-    console.log('Pathfinder says : ')
-    console.log(v)
-    
-  },
-  error: (e) => console.error(e),
-  complete: () => console.info('complete')
-})
-}
 
   getCompetencies(): void {
     this.compService.repositoryMgmtControllerLoadResolvedRepository(this.selected.id).subscribe({

@@ -1,1 +1,32 @@
 <p>path-viewer works!</p>
+<mat-form-field appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected" (selectionChange)="repoChange()">
+      <mat-option *ngFor="let rep of repos" [value]="rep">
+        {{rep.name}}
+    </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <p>You selected: {{selected.name}}</p>
+
+  <button mat-raised-button color="primary" (click)="findPath()">Search Path in selected Repo</button>
+
+  <ngx-graph
+class="chart-container"
+[view]="[1600, 200]"
+layout="dagre"
+[showMiniMap]="true"
+[update$]="update$"
+[nodes]="nodes"
+[links]="edges"
+>
+<ng-template #nodeTemplate let-node>
+  <svg:g class="node">
+    <svg:rect [attr.width]="node.dimension.width" [attr.height]="node.dimension.height" [attr.fill]="node.data.color" />
+    <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">{{node.data.name}}</svg:text>
+  </svg:g>
+</ng-template>
+
+
+</ngx-graph>
