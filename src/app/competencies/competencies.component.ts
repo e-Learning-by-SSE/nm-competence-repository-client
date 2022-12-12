@@ -73,7 +73,7 @@ export class CompetenciesComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     let dto :  CompetenceCreationDto = {
       skill: '',
-      level: 0
+      level: 0, 
     };
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -115,7 +115,7 @@ export class CompetenciesComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
 
-    dialogConfig.data= dto;
+    dialogConfig.data={dto:dto,repoId: this.selected.id};
 
 
     const dialogRef = this.dialog.open(UebercompDialogComponent,dialogConfig);

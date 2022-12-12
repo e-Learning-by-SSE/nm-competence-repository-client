@@ -24,7 +24,7 @@ export class LoDialogComponent implements OnInit {
   constructor(private compService: CompetenciesService,
     private authService: AuthenticationService,
     public dialogRef: MatDialogRef<LoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: LearningObjectDto,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
 
   }
@@ -89,7 +89,7 @@ export class LoDialogComponent implements OnInit {
 
   getCompetencies(): void {
     
-    this.compService.repositoryMgmtControllerLoadResolvedRepository('1').subscribe({
+    this.compService.repositoryMgmtControllerLoadResolvedRepository(this.data.repoId).subscribe({
       next: (v) => {
         console.log(v)
    

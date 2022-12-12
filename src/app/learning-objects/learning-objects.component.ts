@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthenticationService, CompetenciesService, LearningObjectCreationDto, LearningObjectDto, LearningObjectGroupDto, LearningObjectsService, RepositoryDto } from 'competence_repository_api_typescript-angular';
+import { AuthenticationService, CompetenciesService, LearningObjectCreationDto, LearningObjectDto, LearningObjectGroupDto, LearningObjectsService, RepositoryDto, ShallowLoRepositoryDto } from 'competence_repository_api_typescript-angular';
 import { CompDialogComponent } from '../comp-dialog/comp-dialog.component';
 import { LoDialogComponent } from '../lo-dialog/lo-dialog.component';
 import { LoGroupDialogComponent } from '../lo-group-dialog/lo-group-dialog.component';
@@ -13,7 +13,7 @@ import { LoGroupDialogComponent } from '../lo-group-dialog/lo-group-dialog.compo
 })
 export class LearningObjectsComponent implements OnInit {
   los: LearningObjectDto[] = [];
-  repos: RepositoryDto[] = [];
+  repos: ShallowLoRepositoryDto[] = [];
   selectedLo?: LearningObjectDto;
   losGroups: LearningObjectGroupDto[] = [];
   selected: RepositoryDto = {
@@ -28,7 +28,7 @@ export class LearningObjectsComponent implements OnInit {
     this.getRepos();
   }
   getRepos(): void {
-    this.compService.repositoryMgmtControllerListRepositories().subscribe({
+    this.loService.loRepositoryControllerListRepositories().subscribe({
       next: (v) => {
         console.log(v)
         this.repos = v.repositories
@@ -72,7 +72,7 @@ export class LearningObjectsComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
 
-    dialogConfig.data = dto;
+    dialogConfig.data = {dto:dto,repoId:this.selected.id};
 
 
     const dialogRef = this.dialog.open(LoDialogComponent, dialogConfig);

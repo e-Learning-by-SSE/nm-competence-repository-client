@@ -22,16 +22,17 @@ export class UebercompDialogComponent implements OnInit{
   constructor(private compService: CompetenciesService,
     private authService: AuthenticationService,
     public dialogRef: MatDialogRef<UebercompDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: UeberCompetenceCreationDto,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
   ngOnInit(): void {
     this.compService.configuration.accessToken = this.authService.configuration.accessToken
     this.getCompetencies();
+    console.log(this.data.repoId)
   }
 
   getCompetencies(): void {
     
-    this.compService.repositoryMgmtControllerLoadResolvedRepository('1').subscribe({
+    this.compService.repositoryMgmtControllerLoadResolvedRepository(this.data.repoId).subscribe({
       next: (v) => {
         console.log(v)
    
